@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #ffffff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-list {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+
+        .product {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        .product img {
+            width: 100px;
+            margin-right: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img style="width: 100px;" src="https://www.officecrave.com/assets/images/success-check.gif"/>
+        <h1 style="color: #1e1e1e;">Purchase Information</h1>
+        <p style="color: #565656;">Thank you for your purchase!</p>
+    </header>
+
+    <div class="product-list">
+        <% products.forEach(product => { %>
+            <div class="product">
+                <img src="<%= product.image %>" alt="<%= product.name %>">
+                <div>
+                    <h3><%= product.name %></h3>
+                    <p>Price: $<%= product.price %></p>
+                    <p>Units: <%= product.quantity %></p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+
+    <div class="total">
+        <h2>Total: $<%= total.toFixed(2) %></h2>
+    </div>
+
+    <footer>
+        <p>Continue shopping <a href="/store">here</a>.</p>
+    </footer>
+</body>
+</html>
