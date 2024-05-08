@@ -10,19 +10,17 @@ export async function getProducts(req, res){
         res.status(400).json({error: error.message})
     }
 
-    // res.status(400).json({error: "something went wrong"})
 }
 
 export async function addProduct(req, res){ 
-    // try{
-    // const { body } = req
-    // await productService.addProduct(body)
-    // res.status(201).json(body)
-    // }catch(error){ 
-    //     res.status(400).json({error: error.message})
-    // }
+    try{
+    const { body } = req
+    await productService.addProduct(body)
+    res.status(201).json(body)
+    }catch(error){ 
+        res.status(400).json({error: error.message})
+    }
 
-    res.status(400).json({error: "something went wrong"})
     
 }
 
@@ -34,46 +32,42 @@ export async function getProductById({params}, res){
         res.status(400).json({error: error.message})
     }
 
-    // res.status(400).json({error: "something went wrong"})
     
 }
 
 export async function updateProduct(req, res){ 
-    // const id = req.params.id;
-    // const { body } = req;
+    const id = req.params.id;
+    const { body } = req;
 
-    // try{
-    // await productService.updateProduct(id, body)
-    // res.status(200).json('product updated successfully')
-    // }catch(error){ 
-    //     res.status(400).json({error: error.message})
-    // }
+    try{
+    await productService.updateProduct(id, body)
+    res.status(200).json('product updated successfully')
+    }catch(error){ 
+        res.status(400).json({error: error.message})
+    }
 
-    res.status(400).json({error: "something went wrong"})
 }
 
 export async function deleteProduct(req, res){ 
-    // try{
-    // await productService.removeProduct(req.params.id)
-    // res.status(200).json('product deleted successfully')
-    // }catch(error){ 
-    //     res.status(400).json({error: error.message})
-    // }
+    try{
+    await productService.removeProduct(req.params.id)
+    res.status(200).json('product deleted successfully')
+    }catch(error){ 
+        res.status(400).json({error: error.message})
+    }
 
-    res.status(400).json({error: "something went wrong"})
 }
 
 export async function searchProducts(req, res){ 
     
-    // const q = req.query
+    const q = req.query
     
-    // try{ 
-    //     const productResult = await productService.search(q)
-    //     res.status(200).json(productResult)
-    // }catch(error){ 
-    //     res.status(400).json({error: error.message})
-    // }
+    try{ 
+        const productResult = await productService.search(q)
+        res.status(200).json(productResult)
+    }catch(error){ 
+        res.status(400).json({error: error.message})
+    }
 
-    res.status(400).json({error: "something went wrong"})
     
 }

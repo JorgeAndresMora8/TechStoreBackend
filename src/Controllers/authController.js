@@ -19,17 +19,17 @@ export async function login(req, res){
 
 export async function signup(req, res){ 
 
-    // try{ 
-    //     const user = req.body
-    //     console.log(user)
-    //     await signUpValidation(user)
-    //     const token = await createToken(user); 
-    //     SendResponse(res, 201, {user: user, token: token})
-    // }catch(error){ 
-    //     SendResponse(res, 401, {error: error.message})
-    // }
+    try{ 
+        const user = req.body
+        console.log(user)
+        await signUpValidation(user)
+        const token = await createToken(user); 
+        SendResponse(res, 201, {user: user, token: token})
+    }catch(error){ 
+        SendResponse(res, 401, {error: error.message})
+    }
 
-    res.status(400).json({error: "something went wrong"})
+    // res.status(400).json({error: "something went wrong"})
 
      
 }
