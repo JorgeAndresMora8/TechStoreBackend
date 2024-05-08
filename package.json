@@ -6,7 +6,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/Server/app.js"
+    "dev": "nodemon src/Server/app.js", 
+    "start": "node src/Server/app.js", 
+    "build": "npm i"
   },
   "keywords": [],
   "author": "",
