@@ -11,6 +11,7 @@ import { paymentRouter } from '../Controllers/paymentController.js'
 
 export const app = express()
 
+const PORT = process.env.PORT || 8080
 
 app.use(cors())
 app.use(cookieParser())
@@ -25,6 +26,6 @@ app.use('/auth', authRouter)
 app.use('/user',  userRouter)
 app.use('/payment', paymentRouter)
 
-app.listen(8080, () => { 
-    console.log('Server is running on port 8080')
+app.listen(PORT, () => { 
+    console.log(`Server is running on port ${PORT}`)
 })
