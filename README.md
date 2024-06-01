@@ -214,7 +214,7 @@ A continuacion se muestran algunos endpoints de este proyecto
   ```json
   {
     "message": "purchase succesfully",
-    "description": "products selected was bought succesfully,
+    "description": "products selected was bought succesfully",
     "status": true
   }
 
