@@ -1,6 +1,7 @@
 
+![TechBanner](https://github.com/JorgeAndresMora8/TechStoreBackend/assets/152979555/7ef35c12-22df-4afb-9f14-16dd6e129cc0)
 
-![TechBanner](https://github.com/JorgeAndresMora8/TechStoreBackend/assets/152979555/1b44d76e-5617-4144-bb5b-a5338f4d4b0a)
+
 # REST API (Documentacion)
 Mediante este documento se explica todo lo relacionado a este proyecto que involucra la creacion de una rest api en Node Js, empleando el framework de express.js. Es importante saber que en caso de querer clonar
 y usar este proyecto es necesario establencer configuraciones extras tales como Google Password Keys, Modelos en Mongodb y demas. 
@@ -191,7 +192,7 @@ A continuacion se muestran algunos endpoints de este proyecto
     }
   ]
 
-### 1. Finalizacion de la compra
+### 2. Finalizacion de la compra
 
 - **URL:** `/payment`
 - **Método HTTP:** POST
@@ -210,7 +211,7 @@ A continuacion se muestran algunos endpoints de este proyecto
 
 
 
-### 1. Autenticacion Usuario
+### 3. Autenticacion Usuario
 
 - **URL:** `/auth/login`
 - **Método HTTP:** POST
@@ -231,10 +232,39 @@ A continuacion se muestran algunos endpoints de este proyecto
     "admin": false
 }
 
-# Proceso Autenticacion Del Usuario
+## Proceso Autenticacion Del Usuario
+El proceso de autenticación JWT (JSON Web Token) implica los siguientes pasos:
+
+### Inicio de sesión 
+El usuario envía sus credenciales al servidor (en este proyecto se usa email y contraseña) a través de un formulario de inicio de sesión.
+
+### Autenticación 
+El servidor verifica las credenciales del usuario. Si son válidas, el servidor genera un JWT que contiene información sobre la identidad del usuario y rol en el sistema.
+
+### Generación del JWT 
+El servidor firma el JWT utilizando una palabra secreta que se encuentra en el sistema. El JWT tiene una estructura de tres partes: el encabezado, el cuerpo y la firma. El encabezado contiene el tipo de token y el algoritmo de firma utilizado. El cuerpo (payload) contiene los datos del usuario y cualquier otra información relevante. La firma protege la integridad del token y garantiza que no haya sido alterado.
+
+Ejemplo de un token:
+```
+{
+"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhbmllbEBnbWFpbC5jb20iLCJpYXQiOjE3MTcyNTgxMDcsImV4cCI6MTcxNzM0ODEwN30.e4RDUycR6iiiIqpt0ePWnEUKa8FVQWL01xcLA8d6css",
+}
+```
+
+### Envío del JWT al cliente
+El servidor envía el JWT al cliente, en la solicitud de inicio de sesión. El cliente almacena el JWT, en el local storage del browser.
+
+### Inclusión del JWT en las solicitudes posteriores 
+El cliente incluye el JWT en las solicitudes posteriores al servidor, en el header de las solicitudes.
+
+### Verificación del JWT
+El servidor verifica la firma del JWT para asegurarse de que no ha sido manipulado y valida su contenido. Si el JWT es válido y no ha caducado, el servidor procesa la solicitud y responde exitosamente.
 
 
 ## Persistencia
+![mongodb2](https://github.com/JorgeAndresMora8/TechStoreBackend/assets/152979555/f5bcde41-a6fd-4745-840a-2d8cbcfbd883)
+
+
 En este proyecto se empleo MongoDB como base de datos en este proyecto. MongoDB ofrece modelado flexible de datos, 
 escalabilidad horizontal y vertical, alto rendimiento, replicación para alta disponibilidad, consultas ricas y flexibles, 
 y es ideal para aplicaciones web modernas y grandes volúmenes de datos.
