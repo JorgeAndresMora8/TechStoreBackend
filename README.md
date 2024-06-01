@@ -49,6 +49,17 @@ que se traduce principalmente en construir nuestra API en forma de capas y a su 
 
 A continuacion se especifica cada una de sus respectivas capas y que funcion cumple cada una. 
 
+#### Routing
+El enrutamiento en una API REST se refiere al proceso de dirigir las solicitudes entrantes a los endpoints correspondientes en el servidor para que puedan ser procesadas. En el contexto de una API REST, los endpoints son los recursos o acciones disponibles que se pueden solicitar mediante distintos métodos HTTP (GET, POST, PUT, DELETE, etc.).
+
+```
+app.use('/store', storeRouter)
+app.use('/review',  reviewRouter)
+app.use('/auth', authRouter)
+app.use('/user',  userRouter)
+app.use('/payment', paymentRouter)
+```
+
 #### Capa Controller
 La capa de controlador en una API REST es responsable de manejar las solicitudes HTTP entrantes, interpretarlas y orquestar la lógica de negocio correspondiente. 
 Su función principal es recibir las solicitudes del cliente, extraer los datos necesarios de esas solicitudes (como parámetros de ruta, consultas, cuerpo de solicitud, 
