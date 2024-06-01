@@ -243,17 +243,48 @@ A continuacion se muestran algunos endpoints de este proyecto
     "admin": false
 }
 
+![JWT AUTHENTICATION](https://github.com/JorgeAndresMora8/TechStoreBackend/assets/152979555/7addd78f-faf3-460f-97f1-8880b0b0dc49)
 ## Proceso Autenticacion Del Usuario
+
 El proceso de autenticación JWT (JSON Web Token) implica los siguientes pasos:
 
 ### Inicio de sesión 
 El usuario envía sus credenciales al servidor (en este proyecto se usa email y contraseña) a través de un formulario de inicio de sesión.
+```
+{ 
+            "email": "jorgemora@gmail.com",
+            "password": "1#je]20f8h2"
+}
+```
 
 ### Autenticación 
 El servidor verifica las credenciales del usuario. Si son válidas, el servidor genera un JWT que contiene información sobre la identidad del usuario y rol en el sistema.
+```
+export async function login(req, res){ 
+
+    try{ 
+    const user = await loginValidation(req.body)
+    const token = await createToken(req.body)
+    SendResponse(res, 200, {user: user, token: token, admin: false})
+    } catch(error){ 
+    SendResponse(res, 401, {error: error.message})
+    }
+
+}
+```
 
 ### Generación del JWT 
 El servidor firma el JWT utilizando una palabra secreta que se encuentra en el sistema. El JWT tiene una estructura de tres partes: el encabezado, el cuerpo y la firma. El encabezado contiene el tipo de token y el algoritmo de firma utilizado. El cuerpo (payload) contiene los datos del usuario y cualquier otra información relevante. La firma protege la integridad del token y garantiza que no haya sido alterado.
+```
+import jwt from "jsonwebtoken"
+import { SECRET_WORD_ENV } from "../envData/Env"
+
+export default async function createToken(data){ 
+    const { email } = data
+    const token = await jwt.sign({email: email}, SECRET_WORD_ENV, { expiresIn:60*60*25 })
+    return token
+}
+```
 
 Ejemplo de un token:
 ```
@@ -264,6 +295,19 @@ Ejemplo de un token:
 
 ### Envío del JWT al cliente
 El servidor envía el JWT al cliente, en la solicitud de inicio de sesión. El cliente almacena el JWT, en el local storage del browser.
+```
+  {
+    "user": {
+        "id": "4",
+        "firstname": "Jorge",
+        "lastname": "Mora",
+        "email": "jorgemora@gmail.com",
+        "password": "$2b$08$8bptysF3PitCT1o25axzGu7euE2JNxBCoieJ.S8ZCJBsw4SYJcqKW"
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhbmllbEBnbWFpbC5jb20iLCJpYXQiOjE3MTcyNTgxMDcsImV4cCI6MTcxNzM0ODEwN30.e4RDUycR6iiiIqpt0ePWnEUKa8FVQWL01xcLA8d6css",
+    "admin": true
+}
+```
 
 ### Inclusión del JWT en las solicitudes posteriores 
 El cliente incluye el JWT en las solicitudes posteriores al servidor, en el header de las solicitudes.
@@ -317,3 +361,11 @@ export default function DBConnection(URI){
     }
 }
 ```
+
+## Contacto
+# Información de Contacto
+
+Si tienes preguntas, comentarios o sugerencias sobre este proyecto, no dudes en ponerte en contacto conmigo. Estoy disponible a través de los siguientes medios:
+
+- **Correo Electrónico:** jamm08012002@gmail.com || jorgeandresmora.developer@gmail.com
+- **LinkedIn:** [@Jorge Andres Mora](https://www.linkedin.com/in/jorge-andres-mora/)
