@@ -1,3 +1,6 @@
+
+
+![TechBanner](https://github.com/JorgeAndresMora8/TechStoreBackend/assets/152979555/1b44d76e-5617-4144-bb5b-a5338f4d4b0a)
 # REST API (Documentacion)
 Mediante este documento se explica todo lo relacionado a este proyecto que involucra la creacion de una rest api en Node Js, empleando el framework de express.js. Es importante saber que en caso de querer clonar
 y usar este proyecto es necesario establencer configuraciones extras tales como Google Password Keys, Modelos en Mongodb y demas. 
@@ -38,6 +41,9 @@ npm i
 ## Arquitectura 
 En este proyecto se empleo la arquitectura __SOLID.__, que cumple con el objetivo de establecer una construccion optima, escalable y organizada siguiendo la premisa de  __SINGLE RESPONSABILITY PRINCIPLE.__, 
 que se traduce principalmente en construir nuestra API en forma de capas y a su vez cada capa se encargue de realizar una tarea en especifico, esto ayuda a crear modulos de codigos mas escalables, mantenibles y de facil manejo. 
+
+
+![README](https://github.com/JorgeAndresMora8/TechStoreBackend/assets/152979555/aaf54d85-972e-4bb2-8126-b709b5db847e)
 
 
 A continuacion se especifica cada una de sus respectivas capas y que funcion cumple cada una. 
@@ -146,6 +152,86 @@ export default class Container {
     }
 }
 ```
+
+
+## Endpoints
+A continuacion se muestran algunos endpoints de este proyecto
+
+### 1. Obtener todos los productos
+
+- **URL:** `/products`
+- **Método HTTP:** GET
+- **Descripción:** Devuelve una lista de todos los productos registrados en el sistema.
+- **Parámetros de consulta:** Ninguno
+- **Respuesta exitosa (código 200):** JSON con la lista de productos.
+- **Ejemplo de respuesta:**
+  ```json
+  [
+    {
+        "id": "88b446fd-f100-423f-b6c5-eff8d1af0452",
+        "name": "Macbook Air M1",
+        "description": "The MacBook Air is a line of laptop computers developed and manufactured by Apple since 2008. It features a thin, light structure in a machined aluminum case and currently either a 13-inch",
+        "price": 1200,
+        "stock": 40,
+        "category": "computer",
+        "brand": "apple",
+        "image": "https://th.bing.com/th/id/OIP.RcSHJM6SZDh20yKIU-RUhwAAAA?rs=1&pid=ImgDetMain",
+        "rating": 4
+    },
+    {
+        "id": "62d15c67-87ab-49ef-ac62-2190a7a1f1c6",
+        "name": "Play Station 5",
+        "description": "The PS5: Sony's cutting-edge gaming console, boasting lightning-fast SSD, 4K graphics, adaptive triggers, and immersive 3D audio, redefining next-gen gaming.",
+        "price": 500,
+        "stock": 24,
+        "category": "videogame",
+        "brand": "sony",
+        "image": "https://th.bing.com/th/id/R.05ddb982b067a81f774f3b42bcc5255c?rik=JLtZtyCDAG1KWg&pid=ImgRaw&r=0",
+        "rating": 5
+    }
+  ]
+
+### 1. Finalizacion de la compra
+
+- **URL:** `/payment`
+- **Método HTTP:** POST
+- **Descripción:** Se realiza la compra sobre los productos seleccionados.
+- **Parámetros de consulta:** Ninguno
+- **Respuesta exitosa (código 200):** JSON con informacion de la compra y se envia un correo de confirmacion al usuario notificando el proceso exitoso. 
+- **Ejemplo de respuesta:**
+  ```json
+  {
+    "message": "purchase succesfully",
+    "description": "products selected was bought succesfully,
+    "status": true
+  }
+
+![Screenshot (94)](https://github.com/JorgeAndresMora8/TechStoreBackend/assets/152979555/1ccc0b42-e220-47aa-96d6-b497a347a7e6)
+
+
+
+### 1. Autenticacion Usuario
+
+- **URL:** `/auth/login`
+- **Método HTTP:** POST
+- **Descripción:** Devuelve informacion del usuario, token, y role del usuario
+- **Parámetros de consulta:** Ninguno
+- **Respuesta exitosa (código 200):** JSON con informacion del usuario.
+- **Ejemplo de respuesta:**
+  ```json
+  {
+    "user": {
+        "id": "4",
+        "firstname": "daniel@gmail.com",
+        "lastname": "lopez",
+        "email": "daniel@gmail.com",
+        "password": "$2b$08$8bptysF3PitCT1o25axzGu7euE2JNxBCoieJ.S8ZCJBsw4SYJcqKW"
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhbmllbEBnbWFpbC5jb20iLCJpYXQiOjE3MTcyNTgxMDcsImV4cCI6MTcxNzM0ODEwN30.e4RDUycR6iiiIqpt0ePWnEUKa8FVQWL01xcLA8d6css",
+    "admin": false
+}
+
+# Proceso Autenticacion Del Usuario
 
 
 ## Persistencia
