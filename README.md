@@ -361,9 +361,7 @@ export default function DBConnection(URI){
     }
 }
 ```
-
-## Contacto
-# Información de Contacto
+### Información de Contacto
 
 Si tienes preguntas, comentarios o sugerencias sobre este proyecto, no dudes en ponerte en contacto conmigo. Estoy disponible a través de los siguientes medios:
 
