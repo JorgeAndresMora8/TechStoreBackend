@@ -13,8 +13,6 @@ export async function login(req, res){
     SendResponse(res, 401, {error: error.message})
     }
 
-    // res.status(400).json({error: "something went wrong"})
-    
 }
 
 export async function signup(req, res){ 
