@@ -13,6 +13,7 @@ export async function getProducts(req, res){
 }
 
 export async function addProduct(req, res){ 
+    console.log(req.body)
     try{
     const { body } = req
     await productService.addProduct(body)
@@ -64,6 +65,7 @@ export async function searchProducts(req, res){
     
     try{ 
         const productResult = await productService.search(q)
+        console.log(productResult)
         res.status(200).json(productResult)
     }catch(error){ 
         res.status(400).json({error: error.message})

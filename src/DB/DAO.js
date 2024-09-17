@@ -3,8 +3,10 @@ import connectionDB from './connection.js'
 import { productModel } from './models/ProductModel.js';
 import { reviewModel } from './models/ReviewModel.js';
 import { userModel } from './models/UserModel.js';
+import { MONGO_DB_URI } from '../config/env.js';
 
-connectionDB('mongodb+srv://jorgeandresmm2002:jorgemora2002@cluster0.s6i7i0p.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+// connectionDB('mongodb+srv://jorgeandresmm2002:jorgemora2002@cluster0.s6i7i0p.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+connectionDB(MONGO_DB_URI)
 
 export default class Container { 
     constructor(schema){ 
@@ -24,11 +26,10 @@ export default class Container {
         if(params.brand !== "") mongoDbParams.push({ brand: params.brand })
         if(params.category !== "") mongoDbParams.push({ category: params.category })
         
-        console.log(params)
-        console.log(mongoDbParams)
 
         if(mongoDbParams.length >= 1){
         const response = await this.schema.find({$and: mongoDbParams})
+        console.log(mongoDbParams)
         return response
         }else { 
             const response = await this.schema.find({}, {_id: 0, __v: 0}).lean();
@@ -53,6 +54,7 @@ export default class Container {
 
     async update(id, data){ 
         const { name, description, stock, price, rating } = data
+        console.log(name, description, stock, price, rating)
         await this.schema.updateOne({id:id}, {$set:{name, price, stock, description, rating}})
     }
 

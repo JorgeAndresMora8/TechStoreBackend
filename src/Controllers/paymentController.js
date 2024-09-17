@@ -6,8 +6,6 @@ export const paymentRouter = Router()
 
 paymentRouter.post("/", async (req, res) => {
 
-
-  
   try {
     await sendEmail(
       { 
