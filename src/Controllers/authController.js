@@ -19,7 +19,6 @@ export async function signup(req, res){
 
     try{ 
         const user = req.body
-        console.log(user)
         await signUpValidation(user)
         const token = await createToken(user); 
         SendResponse(res, 201, {user: user, token: token})

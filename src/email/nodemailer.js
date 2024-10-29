@@ -3,7 +3,6 @@ import { ADMIN_EMAIL_ENV, SECRET_PASS_GOOGLE_ENV } from "../envData/Env.js";
 import ejs from "ejs";
 
 
-console.log(ADMIN_EMAIL_ENV, SECRET_PASS_GOOGLE_ENV)
 
 let transporter = nodemailer.createTransport({
   service: "gmail",
