@@ -23,10 +23,9 @@ export async function signup(req, res){
         const token = await createToken(user); 
         SendResponse(res, 201, {user: user, token: token})
     }catch(error){ 
-        SendResponse(res, 401, {error: error.message})
+        console.log(error)
+        SendResponse(res, 400, {error: error.message})
     }
-
-    // res.status(400).json({error: "something went wrong"})
 
      
 }
