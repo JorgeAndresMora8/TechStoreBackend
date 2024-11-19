@@ -10,7 +10,7 @@ export async function login(req, res){
     const token = await createToken(req.body)
     SendResponse(res, 200, {user: user, token: token, admin: false})
     } catch(error){ 
-    SendResponse(res, 401, {error: error.message})
+    SendResponse(res, 400, {error: error.message})
     }
 
 }
